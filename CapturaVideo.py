@@ -43,7 +43,7 @@ def isImageStart(ser, key, indice):
     if indice < len(key):
         
         val1 = key[indice]
-        val2 = struct.unpack(">B", ser.read())[0]#int(ser.read())
+        val2 = struct.unpack(">B", ser.read())[0]
 
         if val1 == val2:
             indice += 1
@@ -77,13 +77,11 @@ def teste_c1(dados_device):
 
             rgb = np.empty((HEIGHT, WIDTH), dtype=int)
             rgb2 = np.empty((WIDTH, HEIGHT,), dtype=int)
-            #rgb2 = [[0 for x in range(HEIGHT)] for y in range(WIDTH)]
-            #rgb = [[0 for x in range(WIDTH)] for y in range(HEIGHT)]
 
             for y in range(0, HEIGHT):
                 for x in range(0, WIDTH):
                     val = ser.read()
-                    temp = struct.unpack(">B", val)[0]#ser.read()
+                    temp = struct.unpack(">B", val)[0]
                     rgb[y][x] = ((temp & 0xFF) << 16) | ((temp & 0xFF) << 8) | (temp & 0xFF)
                 
             for y in range(0, HEIGHT):
