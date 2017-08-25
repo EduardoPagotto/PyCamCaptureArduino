@@ -53,7 +53,7 @@ def teste_c1(dados_device):
     try:
         ser = serial.Serial(port = dados_device['port'], baudrate = dados_device['baudrate'], timeout=dados_device['timeout'], bytesize=dados_device['bytesize'])
         ser.flushInput()
-        key = bytes([42, 82, 68, 89, 42, 13, 10])
+        key = bytes([42, 82, 68, 89, 42, 13, 10])# *RDY*\n\r
 
         contador = 0
 
@@ -103,60 +103,3 @@ if __name__ == '__main__':
 
     #rotina de carga serial
     teste_c1(dados_device)
-
-    #rotina de carga em bloco
-    #teste_c2(dados_device)
-
-# def teste_c2(dados_device):
-#     '''Carga de buffer em bloco'''
-#     try:
-#         #define a porta serial
-#         ser = serial.Serial(port = dados_device['port'], baudrate= dados_device['baudrate'], timeout = dados_device['timeout'], bytesize = dados_device['bytesize'])
-
-#         #limap o buffer serial
-#         ser.flushInput()
-
-#         #string que marca o inicio de imagem
-#         key = bytes([42, 82, 68, 89, 42, 13, 10])
-
-#         #cria o buffer de entrada 320x240 = 76800, 1 byte por pixel!!!!
-#         buffer = bytearray(76800)
-
-#         #limpa buffer
-#         for indice in range(0, len(buffer)):
-#             buffer[indice] = 0
-
-#         #tamanho da captura
-#         WIDTH = 320
-#         HEIGHT = 240
-
-#         #buffer do canvas com 1 byte por pixel
-#         rgb = np.zeros((HEIGHT, WIDTH, 1), dtype=np.uint8)
-
-#         contador = 0
-#         while True:
-            
-#             print('Procutando Imagem..')
-#             while isImageStart(ser, key, 0) is False:
-#                 pass
-
-#             print('Encontrada Imagem..')
-#             #carrega todo o buffer de imagem de uma so vez
-#             tot = ser.readinto(buffer)
-
-#             #carrega o buffer de dados no buffer de canvas
-#             for x in range(0, HEIGHT):
-#                 for y in range(0, WIDTH):
-#                     indice = (y * HEIGHT) + x
-#                     rgb[x][y] = buffer[indice]
-                    
-#             print('Dados imagen completos:{0}'.format(contador))
-            
-#             #salva a imagen no disco
-#             val = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-#             saveBMP('imagens/img_{0}_{1}.jpg'.format(contador, val), rgb)
-
-#             contador += 1
-
-#     except Exception as exp:
-#         print(exp)
