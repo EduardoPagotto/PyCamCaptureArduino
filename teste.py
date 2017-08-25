@@ -24,11 +24,14 @@ if __name__ == '__main__':
 
     #rgb = np.zeros((height, width), dtype=int)
     #rgb = np.zeros((height, width), np.uint8)
-    rgb = np.zeros((height, width, 1), dtype=np.uint8)
+    rgb = np.zeros((height, width), dtype=np.uint8)
+
+    #print('Tamanho:' + rgb.shape)
 
     for x in range(0, height):
         for y in range(0, width):
-            rgb[x][y] = dado
+            if (x % 10) == 0:
+                rgb[x][y] = dado
 
     #vis2 = cv2.cvtColor(rgb, cv2.COLOR_GRAY2BGR)
 
