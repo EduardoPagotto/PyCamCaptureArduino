@@ -13,7 +13,6 @@ Update on 20170822
 import cv2
 import numpy as np
 
-
 if __name__ == '__main__':
 
     #dado = 0x00202020
@@ -24,7 +23,7 @@ if __name__ == '__main__':
 
     #rgb = np.zeros((height, width), dtype=int)
     #rgb = np.zeros((height, width), np.uint8)
-    rgb = np.zeros((height, width), dtype=np.uint8)
+    rgb = np.zeros((height, width, 1), dtype=np.uint8)
 
     #print('Tamanho:' + rgb.shape)
 
